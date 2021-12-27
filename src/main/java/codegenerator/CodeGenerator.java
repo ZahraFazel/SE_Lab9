@@ -116,9 +116,9 @@ public class CodeGenerator {
 //    }
     public void checkID() {
         symbolStack.pop();
-        if (ss.peek().varType == varType.Non) {
-            //TODO : error
-        }
+//        if (ss.peek().varType == varType.Non) {
+//            //TODO : error
+//        }
     }
 
     public void pid(Token next) {
