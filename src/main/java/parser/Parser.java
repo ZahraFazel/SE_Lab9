@@ -53,13 +53,12 @@ public class Parser {
         Log.print(currentAction.toString());
         //Log.print("");
 
-        switch (currentAction.action) {
-          case shift:
+          if (currentAction.action == act.shift)
+          {
             parsStack.push(currentAction.number);
             lookAhead = lexicalAnalyzer.getNextToken();
-
-            break;
-          case reduce:
+          }
+          if (currentAction.action == act.reduce) {
             Rule rule = rules.get(currentAction.number);
             for (int i = 0; i < rule.RHS.size(); i++) {
               parsStack.pop();
@@ -75,11 +74,9 @@ public class Parser {
             } catch (Exception e) {
               Log.print("Code Genetator Error");
             }
-            break;
-          case accept:
+          }
+        if (currentAction.action == act.accept)
             finish = true;
-            break;
-        }
         Log.print("");
 
       } catch (Exception ignored) {
