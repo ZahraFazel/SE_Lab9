@@ -9,9 +9,9 @@ import java.util.*;
  * Created by mohammad hosein on 6/25/2015.
  */
 public class ParseTable {
-    private List<Map<Token,Action>> actionTable;
-    private List<Map<NonTerminal,Integer>> gotoTable;
-    public ParseTable(String jsonTable) throws Exception {
+    private static List<Map<Token,Action>> actionTable;
+    private static List<Map<NonTerminal,Integer>> gotoTable;
+    static ParseTable create(String jsonTable) throws Exception {
         jsonTable = jsonTable.substring(2,jsonTable.length()-2);
         String[] Rows = jsonTable.split("\\],\\[");
         Map<Integer, Token> terminals = new HashMap<Integer, Token>();
@@ -62,6 +62,7 @@ public class ParseTable {
                 }
             }
         }
+        return new ParseTable();
     }
 
     public int getGotoTable(int currentState, NonTerminal variable )
