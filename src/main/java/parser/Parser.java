@@ -65,6 +65,7 @@ public class Parser {
             try {
               cg.semanticFunction(rule.semanticAction, lookAhead);
             } catch (Exception e) {
+              e.printStackTrace();
             }
           }
         if (currentAction.action == act.accept)
