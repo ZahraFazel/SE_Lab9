@@ -265,13 +265,19 @@ public class CodeGenerator {
 
     }
 
+    public boolean check_operands(Address s1, Address s2){ // checks if both operands are integers
+        if (s1.getVarType() != varType.Int) return false;
+        if (s2.getVarType() != varType.Int) return false;
+        return true;
+    }
+
     public void add() {
         Address temp = new Address(memory.getLastTempIndex(), varType.Int);
         memory.updateLastTempIndex();
         Address s2 = ss.pop();
         Address s1 = ss.pop();
 
-        if (s1.getVarType() != varType.Int || s2.getVarType() != varType.Int) {
+        if (!check_operands(s1, s2)) {
             ErrorHandler.printError("In add two operands must be integer");
         }
         memory.add3AddressCode(Operation.ADD, s1, s2, temp);
@@ -283,7 +289,7 @@ public class CodeGenerator {
         memory.updateLastTempIndex();
         Address s2 = ss.pop();
         Address s1 = ss.pop();
-        if (s1.getVarType() != varType.Int || s2.getVarType() != varType.Int) {
+        if (!check_operands(s1, s2)) {
             ErrorHandler.printError("In sub two operands must be integer");
         }
         memory.add3AddressCode(Operation.SUB, s1, s2, temp);
